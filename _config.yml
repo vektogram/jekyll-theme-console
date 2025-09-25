@@ -10,8 +10,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-admin
 
-tracking: true
-csp_extra: "https://plausible.vektogram.com"
+# tracking: true
+# plausible_domain: https://plausible.vektogram.com
 
 
 # Theme options
