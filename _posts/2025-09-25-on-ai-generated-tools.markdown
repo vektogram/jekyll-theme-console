@@ -1,11 +1,13 @@
 ---
 title: On AI Generated software
 layout: post
-date: '2025-09-25 09:51:12'
+date: "2025-09-25 09:51:12"
 categories: []
 ---
 
-You have seen it on the web. At least if you are a developer, the constant flux of AI generated tools is impressive. There is no doubt that since they became mainstream AI generated apps have become a kind of standard. 
+# On AI Generated software
+
+You have seen it on the web. At least if you are a developer, the constant flux of AI generated tools is impressive. There is no doubt that since they became mainstream AI generated apps have become a kind of standard.
 
 The thing is, what is the problem with them?
 
