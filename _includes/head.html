@@ -33,4 +33,7 @@
   {%- if jekyll.environment == 'production' and site.tracking -%}
   {%- include tracker.html -%}
   {%- endif -%}
+
+  <!-- ✅ Plausible Script: Put it here, outside of the <meta> CSP block -->
+  <script defer data-domain="cesarcm.com" src="https://plausible.vektogram.com/js/script.js"></script>
 </head>

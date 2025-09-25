@@ -12,13 +12,12 @@ connect-src 'self';
 base-uri 'self';
 form-action 'none';
 img-src 'self' https: data:;
-script-src 'self' https://plausible.vektogram.com;
-connect-src 'self' https://plausible.vektogram.com;
 style-src 'self' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com data:;
 media-src 'self';
 object-src 'none';
 child-src 'self';
+script-src 'self';
 {%- endcapture -%}
 {%- capture csp_final -%}{{ csp | strip | replace: '\n', ' ' }} {%- if site.csp_extra %} {{ site.csp_extra }}{%- endif -%}{%- endcapture -%}
 <meta http-equiv="Content-Security-Policy" content="{{ csp_final | strip }}" />
@@ -26,8 +25,6 @@ child-src 'self';
 <meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
 
   {%- include head.html -%}
-<!-- ✅ Plausible Script: Put it here, outside of the <meta> CSP block -->
-<script defer data-domain="cesarcm.com" src="https://plausible.vektogram.com/js/script.js"></script>
 
   <body>
     <div class="container">
