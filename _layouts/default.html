@@ -8,8 +8,8 @@
 {%- endcomment -%}
 {%- capture csp -%}
 default-src 'none';
-connect-src 'self' {%- if site.csp_extra %}{%- for url in site.csp_extra %}'{{ url }}'{%- endfor %}{%- endif -%};
-script-src 'self' {%- if site.csp_extra %}{%- for url in site.csp_extra %}'{{ url }}'{%- endfor %}{%- endif -%};
+connect-src 'self' https://plausible.vektogram.com;
+script-src 'self' https://plausible.vektogram.com;
 base-uri 'self';
 form-action 'none';
 img-src 'self' https: data:;
