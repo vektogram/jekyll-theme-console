@@ -6,9 +6,11 @@ permalink: "/about/"
 
 # Cesar Camacho — Developer, Analyst, Creative Technologist
 
-I'm a developer with a renewable energy background, driven by the challenge of translating complex business needs into clean, scalable digital solutions. From working on enterprise-grade CMS platforms to agile sprints with design and product teams, I bring technical skill, cross-functional collaboration, and strategic awareness to every role.
+I'm a engineer with a renewable energy background, driven by the challenge of doing the work that needs to be done, the one thing that could solve the biggest problems, one at the time.
 
-After a fulfilling journey at Rackspace Technology, I’m currently on a professional development break—realigning my path toward roles where product thinking meets code craftsmanship.
+From working on enterprise-grade CMS platforms to agile sprints with design and product teams, I like to move fast, but restricted by the rules and conventions of the systems we are working on.
+
+After a fulfilling journey at Rackspace Technology, I’m currently on a professional development break, exploring a previous favourite of mine, the Ruby on Rails ecosystem, as well as ecosystems influenced by Rails like the Elixir ecosystem.
 
 ---
 
@@ -16,28 +18,27 @@ After a fulfilling journey at Rackspace Technology, I’m currently on a profess
 
 ### Career Break — *Professional Development*  
 **Apr 2025 – Present**  
-- Taking time to reassess and realign professional goals.  
-- Focusing on the intersection of business analysis and frontend systems.  
+- Working on **Ruby on Rails** Projects and **Elixir/Phoenix** Projects.
+- Exploring ideas and solutions that can give the biggest possitive impact with the least ammount of complexity involved.
 - Exploring roles that blend systems thinking, stakeholder alignment, and clean code.
 
 ---
 
 ### Rackspace Technology — *Software Developer (Remote)*  
 **Nov 2021 – Mar 2025**  
-- Owned a fully customized **Drupal + React + Storybook** frontend stack.  
-- Reduced onboarding time by centralizing documentation and component demos.  
-- Liaised with **marketing, content, and product** teams to refine dev goals.  
-- Migrated legacy translation systems and integrated compliance tools.  
-- Delivered scalable features with clear business value.  
+- Worked and managed a fully customized and enterprise grade instance of **Drupal CMS .**  
+- Implementation of external third party enterprise libraries for Drupal.
+- Focus on iterating the already developed system design we implemented.
 - Contributed to a smoother delivery of Drupal modules and UI elements.
+- Reduced onboarding time by centralizing documentation and component demos. 
 
 ---
 
 ### Low Code Agency — *Web Developer (Remote)*  
 **Aug 2020 – Sep 2021**  
-- Built landing pages and microsites using **Carrd CMS**, **HTML**, **CSS**, and **JavaScript**.  
-- Prioritized responsive, lightweight design for client mobile applications.  
-- Delivered clear, navigable user experiences on tight turnaround times.
+- Built business pages for companies.
+- Prioritized delivering clear messages about the value of the products of each company.
+- Delivered clear, navigable user experiences.
 
 ---
 
@@ -50,17 +51,18 @@ After a fulfilling journey at Rackspace Technology, I’m currently on a profess
 ---
 
 ## Skills
-
-- Agile Workflows • Process Mapping • Requirements Gathering  
+- System Thinking and Design • Workflow Orchestration • Complexity reduction.
 - Systems Analysis • UX & UI Awareness  
 - HTML • CSS • JavaScript  
-- Drupal • React • Storybook
+- Ruby • Elixir • Ubuntu
+
 
 ---
 
 ## Languages
 
 - **English:** Full Professional Proficiency
+- **Spanish:** Native
 
 ---
 
