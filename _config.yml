@@ -11,7 +11,7 @@ plugins:
   - jekyll-admin
 
 tracking: true
-csp_extra: "script-src 'self' https://plausible.vektogram.com; connect-src 'self' https://plausible.vektogram.com;"
+csp_extra: "https://plausible.vektogram.com"
 
 
 # Theme options
