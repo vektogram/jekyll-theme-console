@@ -10,6 +10,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-admin
 
+csp_extra: "connect-src https://plausible.vektogram.com; script-src https://plausible.vektogram.com;"
 # tracking: true
 # plausible_domain: https://plausible.vektogram.com
 
