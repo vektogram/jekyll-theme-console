@@ -8,6 +8,7 @@
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-admin
 
 # Theme options
 # style: dark # dark (default) or light or hacker

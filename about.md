@@ -1,15 +1,71 @@
 ---
+title: "/about"
 layout: page
-title: /about
-permalink: /about/
+permalink: "/about/"
 ---
 
-# jekyll-theme-console
+# Cesar Camacho — Developer, Analyst, Creative Technologist
 
-A jekyll theme with inspiration from linux consoles for hackers, developers and script kiddies.
-You can find the source code for this theme at [github.com/b2a3e8/jekyll-theme-console](https://github.com/b2a3e8/jekyll-theme-console).
+I'm a developer with a renewable energy background, driven by the challenge of translating complex business needs into clean, scalable digital solutions. From working on enterprise-grade CMS platforms to agile sprints with design and product teams, I bring technical skill, cross-functional collaboration, and strategic awareness to every role.
 
-## What is jekyll?
+After a fulfilling journey at Rackspace Technology, I’m currently on a professional development break—realigning my path toward roles where product thinking meets code craftsmanship.
 
-Jekyll is a simple, blog-aware, static site generator for personal, project, or organization sites. Written in Ruby by Tom Preston-Werner, GitHub's co-founder, it is distributed under an open source license.
-<br />Instead of using databases, Jekyll takes the content, renders Markdown or Textile and Liquid templates, and produces a complete, static website ready to be served by Apache HTTP Server, Nginx or another web server. Jekyll is the engine behind GitHub Pages, a GitHub feature that allows users to host websites based on their GitHub repositories for no additional cost.
+---
+
+## Experience
+
+### Career Break — *Professional Development*  
+**Apr 2025 – Present**  
+- Taking time to reassess and realign professional goals.  
+- Focusing on the intersection of business analysis and frontend systems.  
+- Exploring roles that blend systems thinking, stakeholder alignment, and clean code.
+
+---
+
+### Rackspace Technology — *Software Developer (Remote)*  
+**Nov 2021 – Mar 2025**  
+- Owned a fully customized **Drupal + React + Storybook** frontend stack.  
+- Reduced onboarding time by centralizing documentation and component demos.  
+- Liaised with **marketing, content, and product** teams to refine dev goals.  
+- Migrated legacy translation systems and integrated compliance tools.  
+- Delivered scalable features with clear business value.  
+- Contributed to a smoother delivery of Drupal modules and UI elements.
+
+---
+
+### Low Code Agency — *Web Developer (Remote)*  
+**Aug 2020 – Sep 2021**  
+- Built landing pages and microsites using **Carrd CMS**, **HTML**, **CSS**, and **JavaScript**.  
+- Prioritized responsive, lightweight design for client mobile applications.  
+- Delivered clear, navigable user experiences on tight turnaround times.
+
+---
+
+## Education
+
+**B.Sc. in Renewable Energy Engineering**  
+*Universidad de Ciencias y Artes de Chiapas*  
+**Aug 2017 – Nov 2021**
+
+---
+
+## Skills
+
+- Agile Workflows • Process Mapping • Requirements Gathering  
+- Systems Analysis • UX & UI Awareness  
+- HTML • CSS • JavaScript  
+- Drupal • React • Storybook
+
+---
+
+## Languages
+
+- **English:** Full Professional Proficiency
+
+---
+
+## Contact
+
+- **Email:** cesardcm99@gmail.com  
+- **Phone:** +52-961-101-6656  
+- **LinkedIn:** [linkedin.com/in/cesar-cm](http://linkedin.com/in/cesar-cm)
