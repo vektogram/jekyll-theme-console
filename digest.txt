@@ -1,0 +1,1318 @@
+Directory structure:
+└── jekyll-theme-console/
+    ├── README.md
+    ├── 404.md
+    ├── _config.yml
+    ├── Containerfile
+    ├── docker-compose.yml
+    ├── Gemfile
+    ├── index.md
+    ├── jekyll-theme-console.gemspec
+    ├── LICENSE.txt
+    ├── mise.toml
+    ├── peter.md
+    ├── .dockerignore
+    ├── _includes/
+    │   ├── footer.html
+    │   ├── head.html
+    │   ├── header.html
+    │   └── tracker.html
+    ├── _layouts/
+    │   ├── default.html
+    │   ├── home.html
+    │   ├── page.html
+    │   └── post.html
+    ├── _posts/
+    │   ├── 2018-11-04-dear-morons.markdown
+    │   ├── 2018-11-06-viva-la-vulva.markdown
+    │   ├── 2018-11-07-welcome-to-valhalla.markdown
+    │   └── 2019-11-06-syntax-highlighting.markdown
+    ├── _sass/
+    │   ├── _dark.scss
+    │   ├── _hacker.scss
+    │   ├── _light.scss
+    │   ├── _nord.scss
+    │   └── base.scss
+    └── assets/
+        ├── main-dark.scss
+        ├── main-hacker.scss
+        ├── main-light.scss
+        ├── main-nord.scss
+        └── main.scss
+
+================================================
+FILE: README.md
+================================================
+# jekyll-theme-console
+
+A minimal, console‑inspired Jekyll theme for hackers, developers and other cool kids.
+
+[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-console.svg?color=informational)](https://rubygems.org/gems/jekyll-theme-console)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+
+<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenrec-dark.gif" width="550" alt="jekyll-theme-console demo animation">
+
+## Demo
+
+- [dark style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-dark/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-dark))
+
+  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-dark.png" width="350" alt="Dark style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-dark/)
+- [light style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-light/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-light))
+
+  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-light.png" width="350" alt="Light style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-light/)
+- [hacker style demo](https://b2a3e8.github.io/jekyll-theme-console-demo-hacker/) ([source code / template](https://github.com/b2a3e8/jekyll-theme-console-demo-hacker))
+
+  [<img src="https://raw.githubusercontent.com/b2a3e8/jekyll-theme-console/master/screenshot-hacker.png" width="350" alt="Hacker style screenshot">](https://b2a3e8.github.io/jekyll-theme-console-demo-hacker/)
+
+Note: The theme also includes a Nord variant (`style: nord`).
+
+## Features
+
+- Four styles: `dark` (default), `light`, `hacker`, `nord`
+- Optional auto light/dark via `prefers-color-scheme`
+- Strict, extendable Content Security Policy
+- Optional Google Fonts (disable for full self‑hosting)
+- Generic analytics/tracker include (Matomo, Plausible, etc.)
+- Simple header navigation via `header_pages`
+- Works as a RubyGem theme or GitHub Pages remote theme
+
+## Quickstart
+
+If you are new to Jekyll, skim the official docs: https://jekyllrb.com/docs/
+
+### GitHub Pages (remote_theme)
+
+Add to your site's `_config.yml`:
+
+```yaml
+remote_theme: b2a3e8/jekyll-theme-console
+# Optional but recommended
+plugins:
+  - jekyll-seo-tag
+```
+
+Tip: For full local builds with a remote theme, you may need the `jekyll-remote-theme` plugin.
+
+### Gem-based installation
+
+1) Add to your `Gemfile`:
+
+```ruby
+gem "jekyll-theme-console"
+```
+
+2) Install and enable the theme:
+
+```bash
+bundle
+```
+
+```yaml
+# _config.yml
+theme: jekyll-theme-console
+plugins:
+  - jekyll-seo-tag
+```
+
+To update later: `bundle update`.
+
+## Configuration
+
+Add these to `_config.yml` as needed:
+
+- `header_pages`: list of page paths to show in the top menu
+- `footer`: HTML string rendered in the footer
+- `style`: `dark` (default), `light`, `hacker`, or `nord`
+- `listen_for_clients_preferred_style`: `true` to auto‑switch using the OS preference
+- `disable_google_fonts`: `true` to avoid requests to Google Fonts
+- `tracking`: generic tracker configuration (see Security & CSP below)
+- `csp_extra`: extra CSP directives to append to the built‑in policy
+
+Example:
+
+```yaml
+header_pages:
+  - index.md
+  - about.md
+
+style: dark # dark (default), light, hacker, or nord
+listen_for_clients_preferred_style: true # false (default) or true
+
+footer: 'follow us on <a href="https://twitter.com/xxx">twitter</a>'
+disable_google_fonts: false
+
+# Generic tracking (optional; loads only in production)
+# tracking:
+#   script_src:
+#     - https://cdn.example.com/tracker.js
+#   async: true   # default true
+#   defer: false  # default false
+#   # Optional inline init snippet (requires CSP allowance if used)
+#   # init: |
+#   #   window.myTracker=window.myTracker||function(){(window.myTracker.q=window.myTracker.q||[]).push(arguments)};
+#   #   myTracker('init', { siteId: '12345' });
+```
+
+### Front matter
+
+Additional page variables supported by the theme:
+
+- `title`: page title
+- `lang`: page language (defaults to `en`)
+- `robots`: value for the robots meta tag (e.g., `NOINDEX`)
+
+## Customization
+
+Follow these steps to customize:
+
+1. Fork this repository (use as a theme or directly as your site)
+2. Edit templates in `_layouts` for HTML changes
+3. Edit styles in `_sass` and `assets`
+   - Global variables (font size, container width) live in `_sass/base.scss`
+   - Style‑specific variables are in `_sass/_dark.scss`, `_sass/_light.scss`, `_sass/_hacker.scss`, `_sass/_nord.scss`
+   - Fonts are loaded with `<link>` tags; set `disable_google_fonts: true` to avoid external font requests
+
+Optional tweaks:
+
+- Enable Sass compression in `_config.yml`:
+
+  ```yaml
+  sass:
+    style: compressed
+  ```
+
+- Add `jekyll-feed` to generate an Atom/RSS feed.
+
+### Security & CSP
+
+The theme ships with a strict, practical Content Security Policy. By default it allows:
+
+- self‑hosted content, plus images from `https:` and `data:` URIs
+- Google Fonts (unless disabled)
+
+Extend the policy as needed via `_config.yml`:
+
+```yaml
+csp_extra: "frame-src https:;"
+```
+
+Examples:
+
+- Matomo at `https://analytics.example.com`:
+
+  ```yaml
+  tracking:
+    script_src:
+      - https://analytics.example.com/matomo.js
+  # If you add an inline init snippet via `tracking.init`, also include 'unsafe-inline' in script-src.
+  csp_extra: "script-src 'self' https://analytics.example.com 'unsafe-inline'; connect-src 'self' https://analytics.example.com; img-src 'self' https://analytics.example.com;"
+  ```
+
+- Plausible at `https://plausible.example.com`:
+
+  ```yaml
+  tracking:
+    script_src:
+      - https://plausible.example.com/js/plausible.js
+  csp_extra: "script-src 'self' https://plausible.example.com; connect-src 'self' https://plausible.example.com;"
+  ```
+
+Tip: To remove the top border in the menu:
+
+```css
+.menu { border-top: none; }
+```
+
+## Development
+
+This repository is a standard Jekyll site for local development of the theme.
+
+### Docker (recommended)
+
+```bash
+docker compose up --build
+```
+
+Open `http://localhost:4000`.
+
+### Local (Ruby/Bundler)
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+Open `http://localhost:4000`.
+
+When the theme is released, only files in `_layouts`, `_includes`, `_sass`, and `assets` tracked by Git are bundled. To include additional paths, edit the regexp in `jekyll-theme-console.gemspec`.
+
+## License
+
+Open source under the [MIT License](https://opensource.org/licenses/MIT).
+
+
+
+================================================
+FILE: 404.md
+================================================
+---
+layout: default
+permalink: /404.html
+robots: noindex
+---
+
+# 404
+Page not found :(
+
+
+
+================================================
+FILE: _config.yml
+================================================
+# Example Site settings
+
+#header_pages:
+#  - index.md
+#  - about.md
+
+#footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
+
+plugins:
+  - jekyll-seo-tag
+
+# Theme options
+# style: dark # dark (default) or light or hacker
+# listen_for_clients_preferred_style: true # true or false (default)
+
+# Fonts
+# disable_google_fonts: false # set true to prevent loading fonts.googleapis.com
+
+# Tracking (generic, optional; loads only in production)
+# tracking:
+#   script_src:
+#     - https://analytics.example.com/matomo.js
+#   async: true   # default true
+#   defer: false  # default false
+#   # Optional inline init snippet (requires CSP allowance if used)
+#   # init: |
+#   #   var _paq = window._paq = window._paq || [];
+#   #   _paq.push(['trackPageView']);
+#   #   _paq.push(['enableLinkTracking']);
+#   #   _paq.push(['setTrackerUrl', 'https://analytics.example.com/matomo.php']);
+#   #   _paq.push(['setSiteId', '1']);
+#
+# # Extend CSP to allow your tracker sources (script-src/connect-src/img-src as needed)
+# # csp_extra: "script-src 'self' https://analytics.example.com; connect-src 'self' https://analytics.example.com; img-src 'self' https://analytics.example.com;"
+
+
+
+================================================
+FILE: Containerfile
+================================================
+FROM ruby:3.2-slim
+
+ENV LANG=C.UTF-8 \
+    BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    JEKYLL_ENV=development
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    ca-certificates \
+    libffi-dev \
+    libssl-dev \
+    zlib1g-dev \
+    pkg-config \
+    libxml2-dev \
+    libxslt1-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /srv/jekyll
+
+# Copy the source before installing to ensure the gemspec's file globs resolve
+COPY . /srv/jekyll
+
+# Install gems (after copying) so the local gemspec can be evaluated correctly
+RUN bundle install
+
+EXPOSE 4000 35729
+
+CMD ["bash", "-lc", "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --livereload"]
+
+
+
+================================================
+FILE: docker-compose.yml
+================================================
+version: "3.8"
+
+services:
+  jekyll:
+    build:
+      context: .
+      dockerfile: Containerfile
+    working_dir: /srv/jekyll
+    command: bash -lc "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --livereload"
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    environment:
+      - JEKYLL_ENV=development
+    volumes:
+      - .:/srv/jekyll
+      - bundle:/usr/local/bundle
+
+volumes:
+  bundle:
+
+
+
+================================================
+FILE: Gemfile
+================================================
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+gemspec
+
+
+gem 'webrick'
+
+# Use libsass via jekyll-sass-converter 2.x to avoid Dart Sass
+# deprecation warnings for @import during local development.
+# Pin Jekyll to a version compatible with converter 2.x.
+gem 'jekyll', '~> 4.2.2'
+gem 'jekyll-sass-converter', '~> 2.2'
+
+
+
+================================================
+FILE: index.md
+================================================
+---
+title: /
+layout: home
+permalink: /
+---
+
+# Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+================================================
+FILE: jekyll-theme-console.gemspec
+================================================
+# frozen_string_literal: true
+
+Gem::Specification.new do |spec|
+  spec.name          = "jekyll-theme-console"
+  spec.version       = "0.5.2"
+  spec.authors       = ["b2a3e8"]
+  spec.email         = ["31370519+b2a3e8@users.noreply.github.com"]
+
+  spec.summary       = "A jekyll theme with inspiration from linux consoles for hackers, developers and script kiddies."
+  spec.homepage      = "https://github.com/b2a3e8/jekyll-theme-console"
+  spec.license       = "MIT"
+
+  spec.files         = Dir[
+    'assets/**/*',
+    '_layouts/**/*',
+    '_includes/**/*',
+    '_sass/**/*',
+    'LICENSE*',
+    'README*'
+  ]
+
+  spec.add_runtime_dependency "jekyll", ">= 3.5"
+  spec.add_runtime_dependency "jekyll-seo-tag"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
+end
+
+
+
+================================================
+FILE: LICENSE.txt
+================================================
+The MIT License (MIT)
+
+Copyright (c) 2018 b2a3e8
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+
+================================================
+FILE: mise.toml
+================================================
+[tools]
+ruby = "3.2.2"
+
+
+
+================================================
+FILE: peter.md
+================================================
+---
+title: /peter
+layout: page
+permalink: /peter
+---
+
+# Peter principle
+
+The Peter principle is a concept in management developed by Laurence J. Peter, which observes that people in a hierarchy tend to rise to their "level of incompetence". In other words, an employee is promoted based on their success in previous jobs until they reach a level at which they are no longer competent, as skills in one job do not necessarily translate to another. The concept was elucidated in the 1969 book The Peter Principle by Peter and Raymond Hull.
+
+The Peter Principle was published by William Morrow and Company in 1969. Peter and Hull intended the book to be satire, but it became popular as it was seen to make a serious point about the shortcomings of how people are promoted within hierarchical organizations. Hull wrote the text, based on Peter's research.
+
+The Peter principle has been the subject of much later commentary and research.
+
+## What does it mean?
+
+The Peter principle states that a person who is competent at their job will earn promotion to a more senior position which requires different skills. If the promoted person lacks the skills required for their new role, then they will be incompetent at their new level, and so they will not be promoted again. But if they are competent at their new role, then they will be promoted again, and they will continue to be promoted until they eventually reach a level at which they are incompetent. Being incompetent, they do not qualify to be promoted again, and so remain stuck at that final level for the rest of their career (termed "Final Placement" or "Peter's Plateau"). This outcome is inevitable, given enough time and assuming that there are enough positions in the hierarchy to promote competent employees to. The "Peter Principle" is therefore expressed as: "In a hierarchy every employee tends to rise to his level of incompetence." This leads to Peter's Corollary: "In time, every post tends to be occupied by an employee who is incompetent to carry out its duties." Hull calls the study of how hierarchies work "hierarchiology."
+
+## References
+[wikipedia.org/wiki/Peter_principle](https://wikipedia.org/wiki/Peter_principle)
+
+
+
+================================================
+FILE: .dockerignore
+================================================
+.git
+.gitignore
+vendor/
+_site/
+.sass-cache/
+.jekyll-cache/
+node_modules/
+tmp/
+*.log
+*.swp
+*.swo
+*.DS_Store
+screenrec-*.gif
+screenshot-*.png
+
+
+
+================================================
+FILE: _includes/footer.html
+================================================
+<footer>
+  {{ site.footer }}
+</footer>
+
+
+
+================================================
+FILE: _includes/head.html
+================================================
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="color-scheme" content="dark light">
+  <title>{{ page.title }}</title>
+  {%- seo title=false -%}
+
+  {% if page.robots %}
+  <meta name="robots" content="{{page.robots}}" />
+  {% endif %}
+
+  {%- unless site.disable_google_fonts -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+  {%- endunless -%}
+
+  {%- if site.listen_for_clients_preferred_style -%}
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/main.css" | relative_url }}">
+  {%- else -%}
+  {%- if site.style == 'nord' -%}
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/main-nord.css" | relative_url }}">
+  {%- elsif site.style == 'light' -%}
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/main-light.css" | relative_url }}">
+  {%- elsif site.style == 'hacker' -%}
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/main-hacker.css" | relative_url }}">
+  {%- else -%}
+  <link rel="stylesheet" type="text/css" href="{{ "/assets/main-dark.css" | relative_url }}">
+  {%- endif -%}
+  {%- endif -%}
+
+  {%- if jekyll.environment == 'production' and site.tracking -%}
+  {%- include tracker.html -%}
+  {%- endif -%}
+</head>
+
+
+
+================================================
+FILE: _includes/header.html
+================================================
+{%- assign default_paths = site.html_pages | map: 'path' -%}
+{%- assign page_paths = site.header_pages | default: default_paths -%}
+<header>
+  <div class="menu">
+    <ul>
+      {%- for path in page_paths -%}
+        {%- assign my_page = site.pages | where: "path", path | first -%}
+        {%- if my_page.title -%}
+        <li>
+          <a href="{{ my_page.url | relative_url }}"{% if page.url == my_page.url %} aria-current="page"{% endif %}>{{ my_page.title | escape }}</a>
+        </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</header>
+
+
+
+================================================
+FILE: _includes/tracker.html
+================================================
+{%- comment -%}
+  Generic tracker include.
+  Configure in _config.yml under `tracking`:
+    tracking:
+      script_src: "https://example.com/tracker.js" # or an array of URLs
+      async: true   # optional, default: true
+      defer: false  # optional
+      init: |
+        // Optional inline init snippet for your tracker
+        // e.g., window.myTracker('init', { siteId: '123' });
+
+  Notes:
+  - This file renders only in production (see head.html).
+  - If you use external scripts or inline init, you likely need to extend
+    the CSP via `csp_extra` in _config.yml (script-src/connect-src, etc.).
+{%- endcomment -%}
+
+{%- assign async_attr = site.tracking.async | default: true -%}
+{%- assign defer_attr = site.tracking.defer | default: false -%}
+
+{%- if site.tracking.script_src -%}
+  {%- assign _srcs = site.tracking.script_src -%}
+  {%- for s in _srcs -%}
+<script{% if async_attr %} async{% endif %}{% if defer_attr %} defer{% endif %} src="{{ s }}"></script>
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if site.tracking.init -%}
+<script>
+{{ site.tracking.init }}
+</script>
+{%- endif -%}
+
+
+
+================================================
+FILE: _layouts/default.html
+================================================
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+{%- comment -%}
+  Build a practical CSP. It remains strict by default while allowing
+  common use cases like external images and Google Fonts.
+  If you need to permit additional script/connect sources (e.g., analytics),
+  extend via `csp_extra` in your _config.yml.
+{%- endcomment -%}
+{%- capture csp -%}
+default-src 'none';
+connect-src 'self';
+base-uri 'self';
+form-action 'none';
+img-src 'self' https: data:;
+style-src 'self' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com data:;
+media-src 'self';
+object-src 'none';
+child-src 'self';
+script-src 'self';
+{%- endcapture -%}
+{%- capture csp_final -%}{{ csp | strip | replace: '\n', ' ' }} {%- if site.csp_extra %} {{ site.csp_extra }}{%- endif -%}{%- endcapture -%}
+<meta http-equiv="Content-Security-Policy" content="{{ csp_final | strip }}" />
+<meta http-equiv="X-XSS-Protection"  content="1;mode=block" always>
+<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+
+  {%- include head.html -%}
+
+  <body>
+    <div class="container">
+
+      {%- include header.html -%}
+
+    <main>
+      {{ content }}
+    </main>
+
+    {%- include footer.html -%}
+
+    </div>
+  </body>
+</html>
+
+
+
+================================================
+FILE: _layouts/home.html
+================================================
+---
+layout: default
+---
+
+{{ content }}
+{% assign contentwonl = content | strip_newlines %} {% unless contentwonl == ""  %} <br /> {% endunless %} <!-- add line break if there is any content -->
+
+{%- if site.posts.size > 0 -%}
+  <ul>
+    {%- for post in site.posts -%}
+    <li>
+      {%- assign date_format = "%Y-%m-%d" -%}
+      [ {{ post.date | date: date_format }} ] <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+    </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
+
+
+
+================================================
+FILE: _layouts/page.html
+================================================
+---
+layout: default
+---
+
+{{ content }}
+
+
+
+================================================
+FILE: _layouts/post.html
+================================================
+---
+layout: default
+---
+
+{{ content }}
+
+
+
+================================================
+FILE: _posts/2018-11-04-dear-morons.markdown
+================================================
+---
+layout: post
+title:  "Dear morons..."
+date:   2018-11-04 12:32:45 +0100
+categories:
+---
+
+# Dear morons...
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Another title
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+
+
+================================================
+FILE: _posts/2018-11-06-viva-la-vulva.markdown
+================================================
+---
+layout: post
+title:  "Viva la Vulva!"
+date:   2018-11-06 12:32:45 +0100
+categories:
+---
+
+# Viva la Vulva!
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Another title
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+
+
+================================================
+FILE: _posts/2018-11-07-welcome-to-valhalla.markdown
+================================================
+---
+layout: post
+title:  "Welcome to Valhalla!"
+date:   2018-11-07 12:32:45 +0100
+categories:
+---
+
+# Welcome to Valhalla!
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Another title
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+
+
+================================================
+FILE: _posts/2019-11-06-syntax-highlighting.markdown
+================================================
+---
+layout: post
+title:  "Syntax highlighting"
+date:   2019-11-06 01:11:00 +0100
+categories:
+---
+
+# Syntax highlighting
+This theme supports syntax respectively code highlighting. Below you find some examples of different programming languages.
+
+<br />ruby:
+{% highlight ruby %}
+def foo
+  puts 'foo'
+end
+
+def bubble_sort(list)
+  return list if list.size <= 1 # already sorted
+  swapped = true
+  while swapped do
+    swapped = false
+    0.upto(list.size-2) do |i|
+      if list[i] > list[i+1]
+        list[i], list[i+1] = list[i+1], list[i] # swap values
+        swapped = true
+      end
+    end
+  end
+
+  list
+end
+{% endhighlight %}
+
+
+<br /><br />python:
+{% highlight python %}
+def func():
+     # function body
+     print("hello world!")
+
+     def setup(app):
+         # enable Pygments json lexer
+         try:
+             import pygments
+             if pygments.__version__ >= '1.5':
+                 # use JSON lexer included in recent versions of Pygments
+                 from pygments.lexers import JsonLexer
+             else:
+                 # use JSON lexer from pygments-json if installed
+                 from pygson.json_lexer import JSONLexer as JsonLexer
+         except ImportError:
+             pass  # not fatal if we have old (or no) Pygments and no pygments-json
+         else:
+             app.add_lexer('json', JsonLexer())
+
+         return {"parallel_read_safe": True}
+
+words = ['cat', 'window', 'defenestrate']
+for w in words:
+   print w, len(w)
+{% endhighlight %}
+
+
+<br /><br />php:
+{% highlight php %}
+<?php function add($x, $y) {
+    $total = $x + $y;
+    return $total;
+}
+echo "1 + 16 = " . add(1, 16);
+?>
+{% endhighlight %}
+
+
+<br /><br />js:
+{% highlight javascript %}
+function sayHello(name) {
+  if (!name) {
+    console.log('Hello World');
+  } else {
+    console.log(`Hello ${name}`);
+  }  
+}  
+
+function myFunc(a, b) {
+    return a * b;
+}
+document.getElementById('demo').innerHTML = myFunc(4, 3);
+{% endhighlight %}
+
+
+<br /><br />java:
+{% highlight java %}
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+{% endhighlight %}
+
+
+<br />objective c:
+{% highlight objective_c %}
+- (int)method:(int)i {
+    return [self square_root:i];
+}
+{% endhighlight %}
+
+
+<br /><br />perl:
+{% highlight perl %}
+while (<>) {
+    chomp;
+    if (s/$//) {
+        $_ .= <>;
+        redo unless eof();
+    }
+}
+{% endhighlight %}
+
+
+<br /><br />sql:
+{% highlight sql %}
+SELECT Country FROM Customers WHERE Country <> 'USA'
+{% endhighlight %}
+
+
+<br /><br />c++:
+{% highlight c++ %}
+#include
+using namespace std;
+int main () {
+  cout << "Hello World!";
+  return 0;
+}
+{% endhighlight %}
+
+
+<br /><br />c sharp:
+{% highlight c# %}
+class Foo {
+    public int Value;
+    public static explicit operator Foo(int value) {
+        return new Foo(value);
+    }
+}
+Foo foo = (Foo)2;
+{% endhighlight %}
+
+
+<br /><br />vb:
+{% highlight vb linenos %}
+Private Sub Form_Load()
+    MsgBox "Hello, World!"
+End Sub
+{% endhighlight %}
+
+
+
+================================================
+FILE: _sass/_dark.scss
+================================================
+/**
+ * Dark theme variables
+ */
+
+@mixin theme() {
+  :root {
+    --base-color: #DBDBDB;
+    --border: dashed 1px rgba(219, 219, 219, 0.9);
+    --selection-background: rgba(219, 219, 219, 0.99);
+    --selection-text: #000;
+    --background-color: #000;
+    --text-color: var(--base-color);
+    --placeholder-color: var(--base-color);
+    --link-color: var(--base-color);
+    --code-color-1: #aaaaaa;
+    --code-color-2: #ffffcc;
+    --code-color-3: #F00000;
+    --code-color-4: #F0A0A0;
+    --code-color-5: #b38aff;
+    --code-color-6: #5ba711;
+    --code-color-7: #e4e477;
+    --code-color-8: #000080;
+    --code-color-9: #05ca05;
+    --code-color-10: #888888;
+    --code-color-11: #555555;
+    --code-color-12: #800080;
+    --code-color-13: #00d4d4;
+    --code-color-14: #00c1c1;
+    --code-color-15: #ed9d13;
+    --code-color-16: #1e90ff;
+    --code-color-17: #800000;
+    --code-color-18: #bbbbbb;
+  }
+}
+
+
+
+================================================
+FILE: _sass/_hacker.scss
+================================================
+/**
+ * Hacker theme variables
+ */
+
+@mixin theme() {
+  :root {
+    --base-color: #00ff00;
+    --border: dashed 1px rgba(0, 255, 0, 0.9);
+    --selection-background: rgba(0, 255, 0, 0.99);
+    --selection-text: #000;
+    --background-color: #000;
+    --text-color: var(--base-color);
+    --placeholder-color: var(--base-color);
+    --link-color: var(--base-color);
+    --code-color-1: #aaaaaa;
+    --code-color-2: #ffffcc;
+    --code-color-3: #F00000;
+    --code-color-4: #F0A0A0;
+    --code-color-5: #b38aff;
+    --code-color-6: #5ba711;
+    --code-color-7: #e4e477;
+    --code-color-8: #000080;
+    --code-color-9: #05ca05;
+    --code-color-10: #888888;
+    --code-color-11: #555555;
+    --code-color-12: #800080;
+    --code-color-13: #00d4d4;
+    --code-color-14: #00c1c1;
+    --code-color-15: #ed9d13;
+    --code-color-16: #1e90ff;
+    --code-color-17: #800000;
+    --code-color-18: #bbbbbb;
+  }
+}
+
+
+
+================================================
+FILE: _sass/_light.scss
+================================================
+/**
+ * Light theme variables
+ */
+
+@mixin theme() {
+  :root {
+    --base-color: #000;
+    --border: dashed 1px rgba(0, 0, 0, 1);
+    --selection-background: rgba(0, 0, 0, 0.99);
+    --selection-text: #FFF;
+    --background-color: #FFF;
+    --text-color: var(--base-color);
+    --placeholder-color: var(--base-color);
+    --link-color: var(--base-color);
+    --code-color-1: #aaaaaa;
+    --code-color-2: #ffffcc;
+    --code-color-3: #F00000;
+    --code-color-4: #F0A0A0;
+    --code-color-5: #0000aa;
+    --code-color-6: #4c8317;
+    --code-color-7: #aa0000;
+    --code-color-8: #000080;
+    --code-color-9: #00aa00;
+    --code-color-10: #888888;
+    --code-color-11: #555555;
+    --code-color-12: #800080;
+    --code-color-13: #00aaaa;
+    --code-color-14: #009999;
+    --code-color-15: #aa5500;
+    --code-color-16: #1e90ff;
+    --code-color-17: #800000;
+    --code-color-18: #bbbbbb;
+  }
+}
+
+
+
+================================================
+FILE: _sass/_nord.scss
+================================================
+/**
+ * Nord theme variables
+ */
+
+@mixin theme() {
+  :root {
+    --base-color: #D8DEE9;
+    --border: dashed 1px #3B4252;
+    --selection-background: #E5E9F0;
+    --selection-text: #434C5E;
+    --background-color: #2E3440;
+    --text-color: var(--base-color);
+    --placeholder-color: var(--base-color);
+    --link-color: var(--base-color);
+    --code-color-1: #aaaaaa;
+    --code-color-2: #ffffcc;
+    --code-color-3: #F00000;
+    --code-color-4: #F0A0A0;
+    --code-color-5: #0000aa;
+    --code-color-6: #4c8317;
+    --code-color-7: #aa0000;
+    --code-color-8: #000080;
+    --code-color-9: #00aa00;
+    --code-color-10: #888888;
+    --code-color-11: #555555;
+    --code-color-12: #800080;
+    --code-color-13: #00aaaa;
+    --code-color-14: #009999;
+    --code-color-15: #aa5500;
+    --code-color-16: #1e90ff;
+    --code-color-17: #800000;
+    --code-color-18: #bbbbbb;
+  }
+}
+
+
+
+================================================
+FILE: _sass/base.scss
+================================================
+@charset "utf-8";
+
+/**
+ * Style variables
+ */
+$base-font-family:     'Source Code Pro', monospace !default;
+$base-font-size:       12.5px !default;
+$mobile-font-size:     12px !default;
+$base-line-height:     1.5 !default;
+$container-width:      90% !default;
+$container-max-width:  600px !default;
+
+/**
+ * Global
+ */
+body { background-color: var(--background-color);  margin: 0 auto;  padding: 0;  font-family: $base-font-family;  font-size: $base-font-size;  color: var(--text-color);  text-align: left;  line-height: $base-line-height !important; }
+h1, h2, h3, h4, h5, h6 { font-size: $base-font-size;  margin: 0px;  margin-top: 22px;  font-weight: bold;  color: var(--text-color); }
+p, ul, ol { margin: 0px;  color: var(--text-color); }
+a { text-decoration: underline;  color: var(--link-color); }
+a:hover { color: var(--background-color); background-color: var(--base-color); }
+@media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
+
+/**
+ * Layout
+ */
+.container { width: $container-width;  max-width: $container-max-width;  margin-right: auto;  margin-left: auto; }
+p { word-wrap: break-word;  word-break: break-word;  white-space: pre-wrap; margin-bottom: 15px; }
+footer { color: var(--text-color);  border-top: var(--border);  margin: 20px auto 15px;  padding-top: 10px;  text-align: right; }
+header { margin-top: 25px;  margin-bottom: 10px; }
+header p { text-align: left;  margin: 0; }
+footer { margin-bottom: 20px; }
+
+/**
+ * Highlight/Markup
+ */
+::selection { background: var(--selection-background);  color: var(--selection-text); }
+::-moz-selection { background: var(--selection-background);  color: var(--selection-text); }
+
+/**
+ * Lists
+ */
+:not(.menu) > ul { list-style: none;  padding-left: 0; }
+:not(.menu) > ul { list-style-type: none; }
+:not(.menu) > ul > li:before { content: "-";  margin-right: 9px; }
+
+/**
+ * Header/Navigation
+ */
+.menu { border-top: var(--border);  border-bottom: var(--border);  margin-bottom: 25px; }
+.menu ul { margin-top: 12px;  margin-bottom: 12px;  padding-left: 0px;  list-style-type: none;  text-align: right; }
+.menu ul li { display: inline;  margin-left: 10px; }
+.menu ul li a { text-decoration: none;  color: var(--text-color); }
+.menu ul li a:hover { text-decoration: none; color: var(--background-color); background-color: var(--base-color); }
+
+/**
+ * Form
+ */
+input, select, textarea { padding: 0;  margin: 0;  -webkit-appearance: none;  -webkit-border-radius: 0;  border: none; }
+input[type=text], select, textarea { width: 100%;  resize: none;  background-color: var(--background-color);  color: var(--text-color);  caret-color: var(--text-color);  font-size: $base-font-size;  font-family: $base-font-family;  line-height: $base-line-height; }
+input, select, textarea, textarea::-webkit-input-placeholder { text-indent: 0px; }
+::placeholder { color: var(--placeholder-color);  opacity: 1; }
+:-ms-input-placeholder { color: var(--placeholder-color); }
+::-ms-input-placeholder { color: var(--placeholder-color); }
+input[type=submit] { font-size: $base-font-size;  font-family: $base-font-family;  line-height: $base-line-height;  cursor: pointer;  color: var(--link-color);  background-color: var(--background-color); }
+input[type=submit]:hover { color: var(--background-color); background-color: var(--base-color); }
+*:focus { outline: none; }
+textarea { vertical-align: top; }
+
+/**
+ * Code and syntax highlighting
+ */
+.lineno { color: var(--code-color-1); margin-right: 15px; }
+figure.highlight { margin: 5px 0; }
+pre { background-color: var(--background-color);  border: none;  padding: 0;  margin: 0;  overflow:auto;  font-size: $base-font-size;  color: var(--text-color);  line-height: 1.7 !important;  font-family: $base-font-family !important; }
+.highlight .hll { background-color: var(--code-color-2); }
+.highlight .c { color: var(--code-color-1); font-style: italic } /* Comment */
+.highlight .err { color: var(--code-color-3); background-color: var(--code-color-4); } /* Error */
+.highlight .k { color: var(--code-color-5); } /* Keyword */
+.highlight .cm { color: var(--code-color-1); font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: var(--code-color-6); } /* Comment.Preproc */
+.highlight .c1 { color: var(--code-color-1); font-style: italic } /* Comment.Single */
+.highlight .cs { color: var(--code-color-5); font-style: italic } /* Comment.Special */
+.highlight .gd { color: var(--code-color-7); } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: var(--code-color-7); } /* Generic.Error */
+.highlight .gh { color: var(--code-color-8); font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: var(--code-color-9); } /* Generic.Inserted */
+.highlight .go { color: var(--code-color-10); } /* Generic.Output */
+.highlight .gp { color: var(--code-color-11); } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: var(--code-color-12); font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: var(--code-color-7); } /* Generic.Traceback */
+.highlight .kc { color: var(--code-color-5); } /* Keyword.Constant */
+.highlight .kd { color: var(--code-color-5); } /* Keyword.Declaration */
+.highlight .kn { color: var(--code-color-5); } /* Keyword.Namespace */
+.highlight .kp { color: var(--code-color-5); } /* Keyword.Pseudo */
+.highlight .kr { color: var(--code-color-5); } /* Keyword.Reserved */
+.highlight .kt { color: var(--code-color-13); } /* Keyword.Type */
+.highlight .m { color: var(--code-color-14); } /* Literal.Number */
+.highlight .s { color: var(--code-color-15); } /* Literal.String */
+.highlight .na { color: var(--code-color-16); } /* Name.Attribute */
+.highlight .nb { color: var(--code-color-13); } /* Name.Builtin */
+.highlight .nc { color: var(--code-color-9); text-decoration: underline } /* Name.Class */
+.highlight .no { color: var(--code-color-7); } /* Name.Constant */
+.highlight .nd { color: var(--code-color-10); } /* Name.Decorator */
+.highlight .ni { color: var(--code-color-17); font-weight: bold } /* Name.Entity */
+.highlight .nf { color: var(--code-color-9); } /* Name.Function */
+.highlight .nn { color: var(--code-color-13); text-decoration: underline } /* Name.Namespace */
+.highlight .nt { color: var(--code-color-16); font-weight: bold } /* Name.Tag */
+.highlight .nv { color: var(--code-color-7); } /* Name.Variable */
+.highlight .ow { color: var(--code-color-5); } /* Operator.Word */
+.highlight .w { color: var(--code-color-18); } /* Text.Whitespace */
+.highlight .mf { color: var(--code-color-14); } /* Literal.Number.Float */
+.highlight .mh { color: var(--code-color-14); } /* Literal.Number.Hex */
+.highlight .mi { color: var(--code-color-14); } /* Literal.Number.Integer */
+.highlight .mo { color: var(--code-color-14); } /* Literal.Number.Oct */
+.highlight .sb { color: var(--code-color-15); } /* Literal.String.Backtick */
+.highlight .sc { color: var(--code-color-15); } /* Literal.String.Char */
+.highlight .sd { color: var(--code-color-15); } /* Literal.String.Doc */
+.highlight .s2 { color: var(--code-color-15); } /* Literal.String.Double */
+.highlight .se { color: var(--code-color-15); } /* Literal.String.Escape */
+.highlight .sh { color: var(--code-color-15); } /* Literal.String.Heredoc */
+.highlight .si { color: var(--code-color-15); } /* Literal.String.Interpol */
+.highlight .sx { color: var(--code-color-15); } /* Literal.String.Other */
+.highlight .sr { color: var(--code-color-14); } /* Literal.String.Regex */
+.highlight .s1 { color: var(--code-color-15); } /* Literal.String.Single */
+.highlight .ss { color: var(--code-color-5); } /* Literal.String.Symbol */
+.highlight .bp { color: var(--code-color-13); } /* Name.Builtin.Pseudo */
+.highlight .vc { color: var(--code-color-7); } /* Name.Variable.Class */
+.highlight .vg { color: var(--code-color-7); } /* Name.Variable.Global */
+.highlight .vi { color: var(--code-color-7); } /* Name.Variable.Instance */
+.highlight .il { color: var(--code-color-14); } /* Literal.Number.Integer.Long */
+
+
+
+================================================
+FILE: assets/main-dark.scss
+================================================
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Use @import for compatibility with GitHub Pages (libsass)
+@import "dark";
+@import "base";
+
+@include theme();
+
+
+
+================================================
+FILE: assets/main-hacker.scss
+================================================
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Use @import for compatibility with GitHub Pages (libsass)
+@import "hacker";
+@import "base";
+
+@include theme();
+
+
+
+================================================
+FILE: assets/main-light.scss
+================================================
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Use @import for compatibility with GitHub Pages (libsass)
+@import "light";
+@import "base";
+
+@include theme();
+
+
+
+================================================
+FILE: assets/main-nord.scss
+================================================
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Use @import for compatibility with GitHub Pages (libsass)
+@import "nord";
+@import "base";
+
+@include theme();
+
+
+
+================================================
+FILE: assets/main.scss
+================================================
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Use @import for compatibility with GitHub Pages (libsass)
+@import "base";
+
+// Import light theme and include its variables first
+@import "light";
+@include theme();
+
+// Then import dark theme and include inside media query
+@import "dark";
+@media (prefers-color-scheme: dark) {
+  @include theme();
+}
+
+
